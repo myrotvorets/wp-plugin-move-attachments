@@ -1,5 +1,5 @@
 {
-	"name": "myrotvorets/wp-move-attachemnts",
+	"name": "myrotvorets/wp-move-attachments",
 	"type": "wordpress-plugin",
 	"description": "Move attachments from one post to another",
 	"keywords": [
