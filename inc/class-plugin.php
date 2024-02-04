@@ -8,6 +8,9 @@ use WP_Post;
 final class Plugin {
 	private static ?self $instance = null;
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public static function instance(): self {
 		if ( ! self::$instance ) {
 			self::$instance = new self();
@@ -16,6 +19,9 @@ final class Plugin {
 		return self::$instance;
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	private function __construct() {
 		if ( is_admin() ) {
 			add_action( 'admin_menu', [ $this, 'admin_menu' ] );
@@ -39,6 +45,9 @@ final class Plugin {
 		add_action( 'admin_post_move_attachments', [ $this, 'admin_post_move_attachments' ] );
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public function render_page(): void {
 		$params = [];
 
@@ -59,6 +68,9 @@ final class Plugin {
 		self::render_view( 'move-attachments', $params );
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public function load_page(): void {
 		/** @psalm-suppress RiskyTruthyFalsyComparison */
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -69,6 +81,9 @@ final class Plugin {
 		}
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	public function admin_post_move_attachments(): void {
 		check_admin_referer( 'move_attachments' );
 
@@ -109,6 +124,10 @@ final class Plugin {
 			return new WP_Error( 'invalid_url', __( 'Invalid URL', 'wp-move-attachments' ) );
 		}
 
+		if ( $id_from === $id_to ) {
+			return new WP_Error( 'same_post', __( 'Source and destination posts are the same', 'wp-move-attachments' ) );
+		}
+
 		/** @var WP_Post|null */
 		$target_post = get_post( $id_to );
 		if ( ! $target_post ) {
@@ -119,10 +138,12 @@ final class Plugin {
 		$dir                 = wp_upload_dir();
 		unset( $_REQUEST['post_id'] );
 
+		// @codeCoverageIgnoreStart
 		/** @psalm-suppress RiskyTruthyFalsyComparison */
 		if ( ! empty( $dir['error'] ) ) {
 			return new WP_Error( 'upload_dir_error', $dir['error'] );
 		}
+		// @codeCoverageIgnoreEnd
 
 		$target_path = $dir['path'];
 		$url         = $dir['url'];
@@ -193,6 +214,9 @@ final class Plugin {
 		return array_map( fn ( WP_Post $att ) => [ $att->ID, (string) get_attached_file( $att->ID ) ], $atts );
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	private static function render_view( string $name, array $params = [] ): void {
 		$file = __DIR__ . "/../views/{$name}.php";
 		if ( ! file_exists( $file ) ) {
