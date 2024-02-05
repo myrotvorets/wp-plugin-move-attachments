@@ -29,12 +29,12 @@
 		<table class="form-table" role="presentation">
 			<tbody>
 				<tr>
-					<th><label for="url_from"><?php _e( 'Move attachments from', 'wp-move-attachments' ); ?></label></th>
-					<td><input name="url_from" type="url" id="url_from" value="" class="regular-text"/></td>
+					<th><label for="url_from"><?php _e( 'Move attachments from:', 'wp-move-attachments' ); ?></label></th>
+					<td><input name="url_from" type="url" id="url_from" value="" class="regular-text" placeholder="<?=esc_attr( site_url( '/' ) ); ?>"/></td>
 				</tr>
 				<tr>
-					<th><label for="url_to"><?php _e( 'Move attachments to', 'wp-move-attachments' ); ?></label></th>
-					<td><input name="url_to" type="url" id="url_to" value="" class="regular-text"/></td>
+					<th><label for="url_to"><?php _e( 'Move attachments to:', 'wp-move-attachments' ); ?></label></th>
+					<td><input name="url_to" type="url" id="url_to" value="" class="regular-text" placeholder="<?=esc_attr( site_url( '/' ) ); ?>"/></td>
 				</tr>
 			</tbody>
 		</table>

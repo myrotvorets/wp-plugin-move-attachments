@@ -1,0 +1,79 @@
+# Copyright (C) 2024 Myrotvorets
+# This file is distributed under the MIT.
+msgid ""
+msgstr ""
+"Project-Id-Version: Move Attachments 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-plugin-move-"
+"attachments\n"
+"POT-Creation-Date: 2024-02-05T08:20:41+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI 2.9.0\n"
+"X-Domain: wp-move-attachments\n"
+
+#. Plugin Name of the plugin
+msgid "Move Attachments"
+msgstr "Move Attachments"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://myrotvorets.center/"
+msgstr "https://myrotvorets.center/"
+
+#. Description of the plugin
+msgid "Move attachments between posts"
+msgstr "Переміщення вкладень між записами"
+
+#. Author of the plugin
+msgid "Myrotvorets"
+msgstr "Myrotvorets"
+
+#: inc/class-plugin.php:42
+msgctxt "Page title"
+msgid "Move Attachments"
+msgstr "Переміщення вкладень"
+
+#: inc/class-plugin.php:43
+msgctxt "Menu title"
+msgid "Move Attachments"
+msgstr "Переміщення вкладень"
+
+#: inc/class-plugin.php:123 inc/class-plugin.php:132
+msgid "Invalid URL"
+msgstr "Неправильна URL-адреса"
+
+#: inc/class-plugin.php:136
+msgid "Source and destination posts are the same"
+msgstr "Вихідний та цільовий записи є однаковими"
+
+#: inc/class-plugin.php:143
+msgid "Invalid post"
+msgstr "Недійсний запис"
+
+#. translators: 1: filename, 2: destination
+#: inc/class-plugin.php:189
+msgid "Moved %1$s to %2$s"
+msgstr "Переміщено %1$s до %2$s"
+
+#. translators: 1: filename, 2: destination, 3: error message, 4: error data
+#: inc/class-plugin.php:194
+msgid "Failed to move %1$s to %2$s: %3$s %4$s"
+msgstr "Не вдалося перемістити %1$s до %2$s: %3$s %4$s"
+
+#. translators: 1: filename, 2: destination
+#: inc/class-plugin.php:205
+msgid "Failed to move %1$s to %2$s"
+msgstr "Не вдалося перемістити %1$s до %2$s"
+
+#: views/move-attachments.php:32
+msgid "Move attachments from:"
+msgstr "Перемістити вкладення з:"
+
+#: views/move-attachments.php:36
+msgid "Move attachments to:"
+msgstr "Перемістити вкладення до:"
+
+#: views/move-attachments.php:42
+msgid "Move"
+msgstr "Перемістити"
