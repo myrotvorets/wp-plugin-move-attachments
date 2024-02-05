@@ -24,15 +24,23 @@ final class Plugin {
 	 */
 	private function __construct() {
 		if ( is_admin() ) {
+			add_action( 'init', [ $this, 'init' ] );
 			add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 			add_action( 'admin_init', [ $this, 'admin_init' ] );
 		}
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
+	public function init(): void {
+		load_plugin_textdomain( 'wp-move-attachments', false, plugin_basename( dirname( __DIR__ ) ) . '/lang/' );
+	}
+
 	public function admin_menu(): void {
 		$hook = add_management_page(
-			__( 'Move Attachments', 'wp-move-attachments' ),
-			__( 'Move Attachments', 'wp-move-attachments' ),
+			_x( 'Move Attachments', 'Page title', 'wp-move-attachments' ),
+			_x( 'Move Attachments', 'Menu title', 'wp-move-attachments' ),
 			'edit_posts',
 			'move-attachments',
 			[ $this, 'render_page' ]
