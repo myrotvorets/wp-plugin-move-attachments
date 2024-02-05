@@ -117,8 +117,8 @@ final class Plugin {
 
 		$url_from = preg_replace( '!https?://[^/]++!i', '', $url_from );
 		$url_to   = preg_replace( '!https?://[^/]++!i', '', $url_to );
-		$id_from  = self::url_to_postid( $url_from );
-		$id_to    = self::url_to_postid( $url_to );
+		$id_from  = Utils::url_to_postid( $url_from );
+		$id_to    = Utils::url_to_postid( $url_to );
 
 		if ( ! $id_from || ! $id_to ) {
 			return new WP_Error( 'invalid_url', __( 'Invalid URL', 'wp-move-attachments' ) );
@@ -130,9 +130,11 @@ final class Plugin {
 
 		/** @var WP_Post|null */
 		$target_post = get_post( $id_to );
+		// @codeCoverageIgnoreStart
 		if ( ! $target_post ) {
 			return new WP_Error( 'invalid_post', __( 'Invalid post', 'wp-move-attachments' ) );
 		}
+		// @codeCoverageIgnoreEnd
 
 		$_REQUEST['post_id'] = $id_to;
 		$dir                 = wp_upload_dir();
@@ -151,7 +153,7 @@ final class Plugin {
 		$errors      = [];
 
 		set_time_limit( 0 );
-		$attachments = self::get_attachments( $id_from );
+		$attachments = Utils::get_attachments( $id_from );
 		foreach ( $attachments as [ $att_id, $fullname ] ) {
 			$name        = wp_basename( $fullname );
 			$unique_name = wp_unique_filename( $target_path, $name );
@@ -178,6 +180,7 @@ final class Plugin {
 					// translators: 1: filename, 2: destination
 					$log[] = sprintf( __( 'Moved %1$s to %2$s', 'wp-move-attachments' ), $fullname, $destination );
 				} else {
+					// @codeCoverageIgnoreStart
 					$errors[] = sprintf(
 						// translators: 1: filename, 2: destination, 3: error message, 4: error data
 						__( 'Failed to move %1$s to %2$s: %3$s %4$s', 'wp-move-attachments' ),
@@ -186,32 +189,18 @@ final class Plugin {
 						$attach_id->get_error_message(),
 						(string) $attach_id->get_error_data()
 					);
+					// @codeCoverageIgnoreEnd
 				}
 			} else {
+				// @codeCoverageIgnoreStart
 				// translators: 1: filename, 2: destination
 				$errors[] = sprintf( __( 'Failed to move %1$s to %2$s', 'wp-move-attachments' ), $fullname, $destination );
 				unlink( $destination ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_unlink -- this happens in uploads
+				// @codeCoverageIgnoreEnd
 			}
 		}
 
 		return [ $log, $errors ];
-	}
-
-	/**
-	 * @psalm-return array<array-key, list{int, string}>
-	 */
-	private static function get_attachments( int $post_id ): array {
-		$args = [
-			'post_parent'    => $post_id,
-			'post_type'      => 'attachment',
-			'posts_per_page' => -1,
-			'orderby'        => 'menu_order',
-			'order'          => 'ASC',
-		];
-
-		/** @var WP_Post[] */
-		$atts = get_children( $args );
-		return array_map( fn ( WP_Post $att ) => [ $att->ID, (string) get_attached_file( $att->ID ) ], $atts );
 	}
 
 	/**
@@ -225,19 +214,5 @@ final class Plugin {
 
 		extract( $params, EXTR_SKIP );
 		require $file; // NOSONAR
-	}
-
-	private static function url_to_postid( string $url ): int {
-		$cache_key = md5( $url );
-		/** @var mixed */
-		$post_id = wp_cache_get( $cache_key, 'url_to_postid' );
-
-		if ( ! is_int( $post_id ) ) {
-			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.url_to_postid_url_to_postid
-			$post_id = url_to_postid( $url );
-			wp_cache_set( $cache_key, $post_id, 'url_to_postid', HOUR_IN_SECONDS );
-		}
-
-		return $post_id;
 	}
 }

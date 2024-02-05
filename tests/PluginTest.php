@@ -31,6 +31,10 @@ class PluginTest extends WP_UnitTestCase {
 		self::assertGreaterThan( 0, has_action( 'admin_post_move_attachments', [ self::$plugin, 'admin_post_move_attachments' ] ) );
 	}
 
+	/**
+	 * @uses Myrotvorets\WordPress\MoveAttachments\Utils::get_attachments
+	 * @uses Myrotvorets\WordPress\MoveAttachments\Utils::url_to_postid
+	 */
 	public function test_move_attachments(): void {
 		$ids = self::factory()->post->create_many( 2 );
 
@@ -75,6 +79,7 @@ class PluginTest extends WP_UnitTestCase {
 
 	/**
 	 * @dataProvider data_move_attachments_param_errors
+	 * @uses Myrotvorets\WordPress\MoveAttachments\Utils::url_to_postid
 	 */
 	public function test_move_attachments_param_errors( string $from, string $to, string $code ): void {
 		$result = self::$plugin->move_attachments( $from, $to );
@@ -89,6 +94,9 @@ class PluginTest extends WP_UnitTestCase {
 		];
 	}
 
+	/**
+	 * @uses Myrotvorets\WordPress\MoveAttachments\Utils::url_to_postid
+	 */
 	public function test_move_attachments_same_post(): void {
 		$id = self::factory()->post->create();
 
