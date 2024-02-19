@@ -22,7 +22,7 @@
 	</div>
 	<?php endif; ?>
 
-	<form action="<?= esc_url( admin_url( 'admin-post.php' ) ) ?>" method="post">
+	<form action="<?= esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
 		<?php wp_nonce_field( 'move_attachments' ); ?>
 		<input type="hidden" name="action" value="move_attachments"/>
 
@@ -30,11 +30,11 @@
 			<tbody>
 				<tr>
 					<th><label for="url_from"><?php _e( 'Move attachments from:', 'wp-move-attachments' ); ?></label></th>
-					<td><input name="url_from" type="url" id="url_from" value="" class="regular-text" placeholder="<?=esc_attr( site_url( '/' ) ); ?>"/></td>
+					<td><input name="url_from" type="url" id="url_from" value="" class="regular-text" placeholder="<?= esc_attr( site_url( '/' ) ); ?>"/></td>
 				</tr>
 				<tr>
 					<th><label for="url_to"><?php _e( 'Move attachments to:', 'wp-move-attachments' ); ?></label></th>
-					<td><input name="url_to" type="url" id="url_to" value="" class="regular-text" placeholder="<?=esc_attr( site_url( '/' ) ); ?>"/></td>
+					<td><input name="url_to" type="url" id="url_to" value="" class="regular-text" placeholder="<?= esc_attr( site_url( '/' ) ); ?>"/></td>
 				</tr>
 			</tbody>
 		</table>
