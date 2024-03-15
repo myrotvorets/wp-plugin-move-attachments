@@ -21,7 +21,7 @@
 		"php-stubs/wordpress-stubs": "^6.4.1",
 		"phpcompatibility/phpcompatibility-wp": "^2.1.4",
 		"phpunit/phpunit": "^9.6.16",
-		"psalm/plugin-phpunit": "^0.18.4",
+		"psalm/plugin-phpunit": "^0.19.0",
 		"vimeo/psalm": "^5.20.0",
 		"wp-cli/i18n-command": "^2.5",
 		"wp-phpunit/wp-phpunit": "^6.4",
