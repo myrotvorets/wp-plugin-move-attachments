@@ -123,8 +123,8 @@ final class Plugin {
 			return new WP_Error( 'invalid_url', __( 'Invalid URL', 'wp-move-attachments' ) );
 		}
 
-		$url_from = preg_replace( '!https?://[^/]++!i', '', $url_from );
-		$url_to   = preg_replace( '!https?://[^/]++!i', '', $url_to );
+		$url_from = (string) preg_replace( '!https?://[^/]++!i', '', $url_from );
+		$url_to   = (string) preg_replace( '!https?://[^/]++!i', '', $url_to );
 		$id_from  = Utils::url_to_postid( $url_from );
 		$id_to    = Utils::url_to_postid( $url_to );
 

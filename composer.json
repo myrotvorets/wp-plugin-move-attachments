@@ -11,7 +11,7 @@
 		]
 	},
 	"require": {
-		"php": "^8.1.0",
+		"php": "^8.3.0",
 		"composer/installers": "^2.0",
 		"wildwolf/singleton-trait": "^1.0.1"
 	},
@@ -21,8 +21,8 @@
 		"php-stubs/wordpress-stubs": "^6.4.1",
 		"phpcompatibility/phpcompatibility-wp": "^2.1.4",
 		"phpunit/phpunit": "^9.6.16",
-		"psalm/plugin-phpunit": "^0.19.0",
-		"vimeo/psalm": "^5.20.0",
+		"psalm/plugin-phpunit": "^0.19.2",
+		"vimeo/psalm": "~6.4.0",
 		"wp-cli/i18n-command": "^2.5",
 		"wp-phpunit/wp-phpunit": "^6.4",
 		"yoast/phpunit-polyfills": "^4.0"
@@ -30,7 +30,7 @@
 	"config": {
 		"sort-packages": true,
 		"platform": {
-			"php": "8.1"
+			"php": "8.3.6"
 		},
 		"allow-plugins": {
 			"composer/package-versions-deprecated": true,
