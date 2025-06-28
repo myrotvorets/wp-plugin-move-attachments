@@ -58,7 +58,7 @@ jobs:
           fi
 
       - name: Set up PHP
-        uses: shivammathur/setup-php@cf4cade2721270509d5b1c766ab3549210a39a2a # 2.33.0
+        uses: shivammathur/setup-php@0f7f1d08e3e32076e51cae65eb0b0c871405b16e # 2.34.1
         with:
           coverage: ${{ steps.coverage.outputs.coverage }}
           ini-values: ${{ steps.coverage.outputs.ini }}
@@ -94,7 +94,7 @@ jobs:
           vendor/bin/phpunit --order-by=random ${OPTIONS}
 
       - name: Upload coverage report
-        uses: codecov/codecov-action@13ce06bfc6bbe3ecf90edbbf1bc32fe5978ca1d3 # v5.3.1
+        uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5.4.3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: clover.xml
