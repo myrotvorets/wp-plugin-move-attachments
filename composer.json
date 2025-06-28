@@ -21,8 +21,8 @@
 		"php-stubs/wordpress-stubs": "^6.4.1",
 		"phpcompatibility/phpcompatibility-wp": "^2.1.4",
 		"phpunit/phpunit": "^9.6.16",
-		"psalm/plugin-phpunit": "^0.19.2",
-		"vimeo/psalm": "~6.4.0",
+		"psalm/plugin-phpunit": "^0.19.5",
+		"vimeo/psalm": "^6.5.0",
 		"wp-cli/i18n-command": "^2.5",
 		"wp-phpunit/wp-phpunit": "^6.4",
 		"yoast/phpunit-polyfills": "^4.0"
@@ -30,7 +30,7 @@
 	"config": {
 		"sort-packages": true,
 		"platform": {
-			"php": "8.3.6"
+			"php": "8.3.16"
 		},
 		"allow-plugins": {
 			"composer/package-versions-deprecated": true,
