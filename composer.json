@@ -20,7 +20,7 @@
 		"johnpbloch/wordpress-core": "^6.4.2",
 		"php-stubs/wordpress-stubs": "^6.4.1",
 		"phpcompatibility/phpcompatibility-wp": "^2.1.4",
-		"phpunit/phpunit": "^9.6.16",
+		"phpunit/phpunit": "^13.0.0",
 		"psalm/plugin-phpunit": "^0.19.5",
 		"vimeo/psalm": "^6.5.0",
 		"wp-cli/i18n-command": "^2.5",
